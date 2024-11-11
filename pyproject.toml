@@ -1,13 +1,14 @@
 [tool.poetry]
 name = "commentbegone"
 version = "0.1.0"
-description = ""
+description = "A Python package to remove comments from Python code."
 authors = ["Nitya Ranjan <nitya.ranjan@clearobject.com>"]
 readme = "README.md"
+packages = [{include = "commentbegone"}]
 
 [tool.poetry.dependencies]
-python = "^3.13"
-
+python = "^3.8"
+regex = "^2024.11.6"
 
 [build-system]
 requires = ["poetry-core"]
