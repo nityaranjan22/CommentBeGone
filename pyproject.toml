@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "commentbegone"
-version = "0.1.0"
+version = "0.1.1"
 description = "A Python package to remove comments from Python code."
 authors = ["Nitya Ranjan <nitya.ranjan@clearobject.com>"]
 readme = "README.md"
