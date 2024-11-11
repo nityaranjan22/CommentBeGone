@@ -1,29 +1,26 @@
 import re
 
-def remove_comments_from_code(code: str) -> str:
+def remove_comments_from_text(content: str) -> str:
     """
-    Removes comments from the provided Python code.
+    Removes comments from Python or YAML content.
 
     Args:
-        code (str): The Python code as a string.
+        content (str): The content of the file as a string.
 
     Returns:
-        str: The code with comments removed.
+        str: The content with comments removed.
     """
-    # Split the code into lines
-    lines = code.splitlines()
-    # Process each line
+    # Split content into lines
+    lines = content.splitlines()
     cleaned_lines = []
+
     for line in lines:
-        # Check if the line is only a comment
-        if line.strip().startswith("#"):
-            # Skip the line if it's a comment
-            continue
-        # Remove inline comments and strip trailing whitespace
-        cleaned_line = re.sub(r'\s*#.*', '', line).rstrip()
-        # Append the cleaned line if it's not empty
-        if cleaned_line:
+        # Remove inline comments
+        cleaned_line = re.sub(r'(?<!\\)#.*', '', line).rstrip()
+        # Add cleaned line if not empty
+        if cleaned_line.strip():
             cleaned_lines.append(cleaned_line)
-    # Join the cleaned lines
-    cleaned_code = '\n'.join(cleaned_lines)
-    return cleaned_code
+
+    # Join the cleaned lines back into a single string
+    cleaned_content = '\n'.join(cleaned_lines)
+    return cleaned_content
