@@ -1,3 +1,5 @@
+# commentbegone/remove_comments.py
+
 import re
 
 def remove_comments_from_text(content: str) -> str:
@@ -14,13 +16,20 @@ def remove_comments_from_text(content: str) -> str:
     lines = content.splitlines()
     cleaned_lines = []
 
+    # Regular expression pattern to match comments that are not within strings or escaped
+    comment_pattern = re.compile(r'(?<!\\)#(?![^"\']*["\']).*')
+
     for line in lines:
-        # Remove inline comments
-        cleaned_line = re.sub(r'(?<!\\)#.*', '', line).rstrip()
-        # Add cleaned line if not empty
-        if cleaned_line.strip():
+        # Remove comments that meet the criteria
+        if '#' in line:
+            cleaned_line = comment_pattern.sub('', line).rstrip()
+        else:
+            cleaned_line = line.rstrip()
+
+        # Append each line if it's not empty after stripping comments and spaces
+        if cleaned_line:
             cleaned_lines.append(cleaned_line)
 
-    # Join the cleaned lines back into a single string
+    # Join cleaned lines into a single string
     cleaned_content = '\n'.join(cleaned_lines)
     return cleaned_content
