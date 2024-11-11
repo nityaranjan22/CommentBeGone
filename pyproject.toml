@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "commentbegone"
-version = "2.0.0"
+version = "1.0.0"
 description = "A Python package to remove comments from Python code."
 authors = ["Nitya Ranjan <nitya.ranjan@clearobject.com>"]
 readme = "README.md"
@@ -9,7 +9,11 @@ packages = [{include = "commentbegone"}]
 [tool.poetry.dependencies]
 python = "^3.8"
 regex = "^2024.11.6"
+ruamel-yaml = "^0.17.6"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+commentbegone = "commentbegone.remove_comments_cli:main"

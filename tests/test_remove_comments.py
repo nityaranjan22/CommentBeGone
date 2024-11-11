@@ -15,7 +15,7 @@ def test_remove_python_comments():
             return a + b
     ''').strip()
 
-    assert remove_comments_from_text(code_with_comments) == expected_code
+    assert remove_comments_from_text(code_with_comments, file_type='python') == expected_code
 
 def test_remove_yaml_comments():
     yaml_with_comments = textwrap.dedent('''
@@ -34,7 +34,7 @@ def test_remove_yaml_comments():
           key3: value3
     ''').strip()
 
-    assert remove_comments_from_text(yaml_with_comments) == expected_yaml
+    assert remove_comments_from_text(yaml_with_comments, file_type='yaml') == expected_yaml
 
 def test_mixed_content_with_comments():
     mixed_content = textwrap.dedent('''
@@ -51,7 +51,7 @@ def test_mixed_content_with_comments():
             return "Hello"
     ''').strip()
 
-    assert remove_comments_from_text(mixed_content) == expected_output
+    assert remove_comments_from_text(mixed_content, file_type='python') == expected_output
 
 def test_escaped_hash():
     content_with_escaped_hash = textwrap.dedent('''
@@ -65,4 +65,4 @@ def test_escaped_hash():
         def func(): return "String with # inside"
     ''').strip()
 
-    assert remove_comments_from_text(content_with_escaped_hash) == expected_output
+    assert remove_comments_from_text(content_with_escaped_hash, file_type='python') == expected_output
